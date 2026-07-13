@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public IInput input;
     public PlayerMotor motor;
+    public PlayerCamera playerCamera;
 
     public float walkSpeed;
     public float sprintSpeed;
@@ -30,5 +31,7 @@ public class PlayerController : MonoBehaviour
         {
             motor.Move(input.move, walkSpeed);
         }
+
+        playerCamera.Look(input.look, transform.position);
     }
 }
