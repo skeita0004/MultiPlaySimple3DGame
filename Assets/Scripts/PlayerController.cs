@@ -23,14 +23,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        float moveSpeed = walkSpeed;
         if (input.sprint)
         {
-            motor.Move(input.move, sprintSpeed);
+            walkSpeed = sprintSpeed;
         }
-        else
-        {
-            motor.Move(input.move, walkSpeed);
-        }
+        motor.Move(input.move, moveSpeed, playerCamera.tpsCamera.transform.localRotation);
 
         playerCamera.Look(input.look, transform.position);
     }

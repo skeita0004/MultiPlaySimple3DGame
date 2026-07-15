@@ -6,7 +6,6 @@ public class PlayerCamera : MonoBehaviour
 
     public void Look(Vector2 _input, Vector3 _playerPos)
     {
-        Debug.Log(tpsCamera);
         tpsCamera.transform.RotateAround(_playerPos, Vector3.up, _input.x);
     }
 }
