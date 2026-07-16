@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
 
+    private IState currentState_;
+
     void Awake()
     {
         input = GetComponent<LocalInput>();
@@ -23,13 +25,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float moveSpeed = walkSpeed;
-        if (input.sprint)
-        {
-            walkSpeed = sprintSpeed;
-        }
-        motor.Move(input.move, moveSpeed, playerCamera.tpsCamera.transform.localRotation);
-
         playerCamera.Look(input.look, transform.position);
+
+        currentState_.Update();
     }
 }
