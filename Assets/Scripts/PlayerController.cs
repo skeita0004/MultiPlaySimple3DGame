@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public IInput input;
     public PlayerMotor motor;
     public PlayerCamera playerCamera;
+    public PlayerAnimator animator;
 
     public float walkSpeed;
     public float sprintSpeed;
@@ -14,10 +15,13 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         input = GetComponent<LocalInput>();
-        Debug.Log(input);
-
         motor = GetComponent<PlayerMotor>();
+        animator = GetComponent<PlayerAnimator>();
+
+        currentState_ = new IdleState();
+        currentState_.Enter(this);
     }
+
     void Start()
     {
         
@@ -26,7 +30,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         playerCamera.Look(input.look, transform.position);
-
+        
         currentState_.Update();
+    }
+
+    public void ChangeState(IState _newState)
+    {
+        currentState_.Exit();
+
+        currentState_ = _newState;
+
+        currentState_.Enter(this);
     }
 }

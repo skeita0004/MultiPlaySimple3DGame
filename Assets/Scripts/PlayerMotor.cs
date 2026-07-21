@@ -52,7 +52,6 @@ public class PlayerMotor : MonoBehaviour
         velocity_ = new Vector3(moveDir.x, 0.0f, moveDir.z) * _speed;
         characterController_.Move(velocity_ * Time.deltaTime);
 
-        Debug.Log(characterController_.transform.name);
         if ( moveDir.sqrMagnitude > 0.01f )
         {
             skin_.rotation = Quaternion.LookRotation(moveDir);
