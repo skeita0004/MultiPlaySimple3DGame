@@ -14,16 +14,17 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        input = GetComponent<LocalInput>();
-        motor = GetComponent<PlayerMotor>();
-        animator = GetComponent<PlayerAnimator>();
-
-        currentState_ = new IdleState();
-        currentState_.Enter(this);
     }
 
     void Start()
     {
+        input = GetComponent<LocalInput>();
+        motor = GetComponent<PlayerMotor>();
+        animator = GetComponent<PlayerAnimator>();
+
+        // 初期状態の設定
+        currentState_ = new IdleState();
+        currentState_.Enter(this);
         
     }
 
@@ -37,9 +38,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeState(IState _newState)
     {
         currentState_.Exit();
-
         currentState_ = _newState;
-
         currentState_.Enter(this);
     }
 }

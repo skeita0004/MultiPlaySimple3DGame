@@ -20,6 +20,7 @@ public class PlayerMotor : MonoBehaviour
 
     void Start()
     {
+        canMove_ = true;
         skin_ = transform.Find("Model");
     }
 
@@ -30,6 +31,11 @@ public class PlayerMotor : MonoBehaviour
 
     public void Move(Vector2 _input, float _speed, Quaternion _cameraYaw)
     {
+        if (!canMove_)
+        {
+            return;
+        }
+
         // 正面, 右ベクトルを求める
         Vector3 forward = _cameraYaw * Vector3.forward;
         Vector3 right   = _cameraYaw * Vector3.right;

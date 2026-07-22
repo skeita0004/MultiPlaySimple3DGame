@@ -19,6 +19,12 @@ public class MoveState : IState
             return;
         }
 
+        if ( player_.input.attack )
+        {
+            player_.ChangeState(new AttackState());
+            return;
+        }
+
         // 移動
         Move();
     }

@@ -17,14 +17,15 @@ public class IdleState : IState
             player_.ChangeState(new MoveState());
             return;
         }
+
+        if (player_.input.attack)
+        {
+            player_.ChangeState(new AttackState());
+            return;
+        }
     }
 
     public void Exit()
-    {
-
-    }
-
-    private void ShouldMove()
     {
 
     }
