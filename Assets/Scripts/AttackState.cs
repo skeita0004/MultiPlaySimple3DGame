@@ -53,7 +53,7 @@ public class AttackState : IState
 
     private void Attack()
     {
-        switch ( comboNum_ % 3 )
+        switch ( comboNum_ % 4 )
         {
             case 1:
                 player_.animator.Play(PlayerAnimation.ATTACK1, 0.05f);
