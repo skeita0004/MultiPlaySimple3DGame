@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public IInput input;
-    public PlayerMotor motor;
-    public PlayerCamera playerCamera;
+    public IInput         input;
+    public PlayerMotor    motor;
+    public PlayerCamera   playerCamera;
     public PlayerAnimator animator;
+    public Weapon         weapon;
 
     public float walkSpeed;
     public float sprintSpeed;
@@ -18,20 +19,28 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        input = GetComponent<LocalInput>();
-        motor = GetComponent<PlayerMotor>();
+        input    = GetComponent<LocalInput>();
+        if ( input == null )
+        {
+            input = GetComponent<RemoteInput>();
+        }
+
+        motor    = GetComponent<PlayerMotor>();
         animator = GetComponent<PlayerAnimator>();
+        weapon   = GetComponent<Weapon>();
 
         // 初期状態の設定
         currentState_ = new IdleState();
         currentState_.Enter(this);
-        
     }
 
     void Update()
     {
-        playerCamera.Look(input.look, transform.position);
-        
+        if ( playerCamera != null )
+        {
+            playerCamera.Look(input.look, transform.position);
+        }
+
         currentState_.Update();
     }
 

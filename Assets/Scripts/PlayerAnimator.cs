@@ -14,7 +14,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private int currAnimHash_;
 
-    // ２ ここでハッシュを配列に突っ込む。以上。
+    // ２ ここでハッシュを配列に突っ込む。
     private static int[] hashs_ = 
     {
         idleHash_,
