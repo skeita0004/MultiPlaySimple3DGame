@@ -10,17 +10,18 @@ public class AttackState : IState
     private static int comboNum_ = 0;
 
     public void Enter(PlayerController _player)
-    { 
+    {
+        Debug.Log("AttackStateへ遷移");
         player_ = _player;
         //player_.animator.Play(PlayerAnimation.WALK, 0.1f);
 
         comboNum_ += 1;
+        player_.weapon.Attack();
+        Attack();
     }
 
     public void Update()
     {
-        Attack();
-        player_.weapon.Attack();
         attackTimer_ -= Time.deltaTime;
 
         if (attackTimer_ < 0)

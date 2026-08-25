@@ -7,13 +7,15 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public int maxHP;
     public int currentHP;
     public int power;
-    public int guardNum;
+    public int maxGuardLimit;
+    public int guardLimit;
     public int isDead;
     public int isGuard;
 
     void Start()
     {
         currentHP = maxHP;
+        guardLimit = maxGuardLimit;
     }
 
     void Update()
@@ -29,5 +31,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
         {
             currentHP = 0;
         }
+
+        Debug.Log(currentHP);
     }
 }

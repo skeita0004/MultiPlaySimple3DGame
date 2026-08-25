@@ -12,6 +12,7 @@ public class IdleState : IState
 
     public void Update()
     {
+        // 移動時
         if ( player_.input.move != Vector2.zero)
         {
             player_.ChangeState(new MoveState());
@@ -21,6 +22,18 @@ public class IdleState : IState
         if (player_.input.attack)
         {
             player_.ChangeState(new AttackState());
+            return;
+        }
+
+        if (player_.input.guard)
+        {
+            player_.ChangeState(new GuardState());
+            return;
+        }
+
+        if (player_.status.currentHP <= 0)
+        {
+            player_.ChangeState(new DeadState());
             return;
         }
     }

@@ -6,5 +6,7 @@ public enum PlayerAnimation
     ATTACK1,
     ATTACK2,
     ATTACK3,
-    DEAD
+    DEAD,
+    GUARD_IDLE,
+    GUARD_REACTION,
 };

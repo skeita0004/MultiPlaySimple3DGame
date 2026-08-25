@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public PlayerMotor    motor;
     public PlayerCamera   playerCamera;
     public PlayerAnimator animator;
+    public PlayerStatus   status;
     public Weapon         weapon;
 
     public float walkSpeed;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
         motor    = GetComponent<PlayerMotor>();
         animator = GetComponent<PlayerAnimator>();
+        status   = GetComponent<PlayerStatus>();
         weapon   = GetComponent<Weapon>();
 
         // 初期状態の設定
