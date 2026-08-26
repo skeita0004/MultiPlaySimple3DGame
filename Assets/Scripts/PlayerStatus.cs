@@ -9,8 +9,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public int power;
     public int maxGuardLimit;
     public int guardLimit;
-    public int isDead;
-    public int isGuard;
+    public bool isDead;
+    public bool isGuard;
 
     void Start()
     {
@@ -25,6 +25,11 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     public void TakeDamage(int _damage)
     {
+        if (isGuard)
+        {
+            return;
+        }
+
         currentHP -= _damage;
 
         if (currentHP < 0)

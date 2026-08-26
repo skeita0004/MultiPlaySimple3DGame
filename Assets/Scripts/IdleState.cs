@@ -1,13 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IdleState : IState
 {
     private PlayerController player_;
+    private bool isAttackEntered_;
+
 
     public void Enter(PlayerController _player)
     {
         player_ = _player;
         player_.animator.Play(PlayerAnimation.IDLE, 0.1f);
+        isAttackEntered_ = false;
     }
 
     public void Update()
@@ -19,10 +23,18 @@ public class IdleState : IState
             return;
         }
 
-        if (player_.input.attack)
+        if ( !isAttackEntered_ )
         {
-            player_.ChangeState(new AttackState());
-            return;
+            if ( player_.input.attack )
+            {
+                player_.ChangeState(new AttackState());
+                isAttackEntered_ = true;
+                return;
+            }
+            else if ( !player_.input.attack )
+            {
+                isAttackEntered_ = false;
+            }
         }
 
         if (player_.input.guard)

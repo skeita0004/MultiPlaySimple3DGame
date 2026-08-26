@@ -25,6 +25,13 @@ public class MoveState : IState
             return;
         }
 
+        if ( player_.input.guard )
+        {
+            player_.ChangeState(new GuardState());
+            return;
+        }
+
+
         // 移動
         Move();
     }

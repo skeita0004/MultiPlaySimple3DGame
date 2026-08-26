@@ -5,68 +5,36 @@ public class AttackState : IState
 {
     private PlayerController player_;
 
-    private static float attackTimer_ = 3f;
-
-    private static int comboNum_ = 0;
-
     public void Enter(PlayerController _player)
     {
         Debug.Log("AttackStateへ遷移");
         player_ = _player;
-        //player_.animator.Play(PlayerAnimation.WALK, 0.1f);
 
-        comboNum_ += 1;
         player_.weapon.Attack();
-        Attack();
+        player_.animator.Play(PlayerAnimation.ATTACK1, 0.05f);
     }
 
     public void Update()
     {
-        attackTimer_ -= Time.deltaTime;
 
-        if (attackTimer_ < 0)
+        if (player_.animator.GetNormalizedTime() > 1.0f)
         {
-            comboNum_ = 0;
-            attackTimer_ = 1.5f;
-
             if ( player_.input.move == Vector2.zero )
             {
                 player_.ChangeState(new IdleState());
                 return;
             }
+            else // ( player_.input.move != Vector2.zero )
+            {
+                player_.ChangeState(new MoveState());
+                return;
+            }
         }
 
-        if (player_.input.attack)
-        {
-            player_.ChangeState(new AttackState());
-            return;
-        }
-
-        if ( player_.input.move != Vector2.zero )
-        {
-            player_.ChangeState(new MoveState());
-            return;
-        }
     }
 
     public void Exit()
     {
         player_.weapon.CancelAttack();
-    }
-
-    private void Attack()
-    {
-        switch ( comboNum_ % 4 )
-        {
-            case 1:
-                player_.animator.Play(PlayerAnimation.ATTACK1, 0.05f);
-                break;
-            case 2:
-                player_.animator.Play(PlayerAnimation.ATTACK1, 0.05f);
-                break;
-            case 3:
-                player_.animator.Play(PlayerAnimation.ATTACK1, 0.05f);
-                break;
-        }
     }
 }
