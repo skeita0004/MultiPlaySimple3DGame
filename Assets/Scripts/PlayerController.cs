@@ -1,8 +1,7 @@
 using UnityEngine;
-using Unity.Netcode;
 using NUnit.Framework.Internal.Filters;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviour
 {
     public IInput         input;
     public PlayerMotor    motor;
@@ -22,11 +21,11 @@ public class PlayerController : NetworkBehaviour
 
     void Start()
     {
-        if (!IsOwner)
-        {
-            input = GetComponent<RemoteInput>();
-        }
-        else
+        //if (!IsOwner)
+        //{
+        //    input = GetComponent<RemoteInput>();
+        //}
+        //else
         {
             input = GetComponent<LocalInput>();
         }
@@ -43,11 +42,6 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner)
-        {
-            playerCamera.gameObject.SetActive(false);
-            return;
-        }
 
         if ( playerCamera != null )
         {
