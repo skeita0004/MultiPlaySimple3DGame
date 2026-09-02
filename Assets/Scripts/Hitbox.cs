@@ -8,7 +8,6 @@ public class Hitbox : MonoBehaviour
     private bool isActive_;
     private readonly HashSet<IDamageable> hitTargets_ = new HashSet<IDamageable>();
 
-
     public void Enable(int _damage)
     {
         damage_   = _damage;
