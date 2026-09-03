@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
     private Hitbox hitbox_;
 
     [SerializeField]
-    private int damage_ = 10;
+    private int damage_ = 30;
 
     public void Attack()
     {

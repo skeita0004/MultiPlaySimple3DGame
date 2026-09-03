@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
+    public string wearerName;
     private int damage_;
     private bool isActive_;
     private readonly HashSet<IDamageable> hitTargets_ = new HashSet<IDamageable>();
@@ -35,7 +36,7 @@ public class Hitbox : MonoBehaviour
             return;
         }
 
-        if (_other.name == "Player")
+        if (_other.name == wearerName)
         {
             return;
         }

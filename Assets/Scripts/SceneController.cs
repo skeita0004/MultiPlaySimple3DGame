@@ -19,7 +19,7 @@ public class SceneController : MonoBehaviour
         if ( Keyboard.current.enterKey.wasPressedThisFrame ||
             Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame )
         {
-            //SceneManager.LoadScene(changeScene);
+            SceneManager.LoadScene(changeScene);
             fading.CallCoroutine();
         }
     }

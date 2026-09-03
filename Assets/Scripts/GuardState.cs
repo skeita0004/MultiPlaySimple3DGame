@@ -20,10 +20,11 @@ public class GuardState : IState
 
     public void Update()
     {
-        if ( player_.input.move != Vector2.zero && !(isDifended_) ) // 攻撃を受けた場合
+        if ( player_.status.isTakeDamageCalled && !(isDifended_) ) // 攻撃を受けた場合
         {
             player_.animator.Play(PlayerAnimation.GUARD_REACTION, 0.1f);
             player_.status.guardLimit -= 1;
+            player_.status.isTakeDamageCalled = false;
             isDifended_ = true;
         }
 
@@ -31,12 +32,6 @@ public class GuardState : IState
         {
             isDifended_ = false;
             player_.animator.Play(PlayerAnimation.GUARD_IDLE, 0.1f);
-        }
-
-        if (player_.input.attack)
-        {
-            player_.ChangeState(new AttackState());
-            return;
         }
 
         if ( !player_.input.guard )

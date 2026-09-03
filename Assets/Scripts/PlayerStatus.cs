@@ -12,6 +12,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public bool isDead;
     public bool isGuard;
 
+    public bool isTakeDamageCalled = false;
+
     void Start()
     {
         currentHP = maxHP;
@@ -25,9 +27,10 @@ public class PlayerStatus : MonoBehaviour, IDamageable
 
     public void TakeDamage(int _damage)
     {
+        isTakeDamageCalled = true;
         if (isGuard)
         {
-            return;
+            _damage /= 3;
         }
 
         currentHP -= _damage;
